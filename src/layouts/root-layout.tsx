@@ -9,7 +9,23 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
+type FooterProps = {
+  firstName: string;
+  lastName: string;
+  studentId: string;
+};
+
+function Footer({ firstName, lastName, studentId }: FooterProps) {
+  return (
+    <footer className="border-t p-4 text-center text-xs text-muted-foreground">
+      จัดทำโดย {firstName} {lastName} — รหัสนักศึกษา {studentId}
+    </footer>
+  );
+}
+
 export default function RootLayout() {
+  const pageTitle = "จัดการวิชาเรียนและสถานะนักศึกษา";
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -18,14 +34,18 @@ export default function RootLayout() {
           <div className="flex items-center gap-2">
             <SidebarTrigger />
             <Separator orientation="vertical" className="h-4" />
-            <span className="text-sm font-medium">ระบบลงทะเบียนเรียน</span>
+            <span className="text-sm font-medium">{pageTitle}</span>
           </div>
           <ModeToggle />
         </header>
         <main className="flex-1 p-4">
           <Outlet />
         </main>
-        <footer className="border-t p-4 text-center text-xs text-muted-foreground"></footer>
+        <Footer
+          firstName="ธีรพันทุ์"
+          lastName="ไกรทองอยู่"
+          studentId="680610684"
+        />
       </SidebarInset>
     </SidebarProvider>
   );
